@@ -25,6 +25,8 @@ add_library(imgui STATIC
 target_include_directories(imgui PUBLIC .)
 target_link_libraries(imgui PUBLIC webgpu glfw)
 
-# Define the WebGPU backend macro for ImGui
-target_compile_definitions(imgui PUBLIC IMGUI_IMPL_WEBGPU_BACKEND_WGPU)
+if(NOT EMSCRIPTEN)
+    target_compile_definitions(imgui PUBLIC IMGUI_IMPL_WEBGPU_BACKEND_WGPU)
+endif()
+
 
